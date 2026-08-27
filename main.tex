@@ -1,0 +1,541 @@
+\documentclass[aspectratio=169, 10pt]{beamer}
+
+\usetheme{Frankfurt} % Fallback/standard theme if Metropolis not installed, we can style standard Beamer nicely
+\usecolortheme{seahorse}
+
+
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{tcolorbox}
+
+% Custom Colors
+\definecolor{maincolor}{RGB}{31, 78, 121}
+\definecolor{accentcolor}{RGB}{217, 83, 79}
+\definecolor{bgcolor}{RGB}{245, 247, 250}
+
+\setbeamercolor{palette primary}{bg=maincolor, fg=white}
+\setbeamercolor{titlelike}{parent=palette primary}
+\setbeamercolor{structure}{fg=maincolor}
+\setbeamercolor{block title}{bg=maincolor, fg=white}
+\setbeamercolor{block body}{bg=maincolor!10, fg=black}
+\setbeamercolor{block title example}{bg=accentcolor, fg=white}
+\setbeamercolor{block body example}{bg=accentcolor!10, fg=black}
+
+\title[Probabilidad Discreta]{Distribuciones de Probabilidad Discreta}
+\subtitle{Binomial, Hipergeométrica y Poisson — Teoria y Ejercicios Resueltos}
+\author{Curso de Estadística y Probabilidad}
+\date{\today}
+
+\begin{document}
+
+% Slide 1: Title
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% Slide 2: Table of Contents
+\begin{frame}{Contenido de la Presentación}
+    \tableofcontents
+\end{frame}
+
+
+%=============================================================================
+\section{Introducción: Variables Aleatorias Discretas}
+%=============================================================================
+
+% Diapositiva 1: Concepto de Variable Aleatoria
+\begin{frame}{¿Qué es una Variable Aleatoria Discreta?}
+    \begin{block}{Definición}
+        Una \textbf{Variable Aleatoria (V.A.)} es una función que asigna un número real a cada resultado posible de un experimento aleatorio.
+    \end{block}
+
+    \vspace{0.3cm}
+    \textbf{Variable Aleatoria Discreta:}
+    \begin{itemize} 
+        \item Es aquella cuyo conjunto de valores posibles es \textbf{finito} o \textbf{infinito contable} (se pueden contar: $0, 1, 2, 3, \dots$).
+        \item Se describe mediante su \textbf{Función Probabilidad}, $f(x) = P(X = x)$, la cual cumple:
+        \begin{enumerate}
+            \item $0 \le P(X = x) \le 1$ para todo $x$.
+            \item $\sum_{all \; x} P(X = x) = 1$.
+        \end{enumerate}
+    \end{itemize}
+\end{frame}
+
+% Diapositiva 2: Esperanza Matemática
+\begin{frame}{Esperanza Matemática (Valor Esperado)}
+    \begin{block}{Definición}
+        La \textbf{Esperanza} o \textbf{Valor Esperado} $\mu = E[X]$ de una V.A. discreta representa la media ponderada a largo plazo de los valores que puede tomar la variable.
+    \end{block}
+
+    \vspace{0.2cm}
+    \textbf{Fórmula General:}
+    $$E[X] = \mu = \sum x \cdot P(X = x)$$
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Interpretación:}
+            \begin{itemize}
+                \item Indica el "centro de masa" de la distribución.
+                \item No necesariamente es un valor que la variable pueda asumir exactamente.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \textbf{Propiedades clave:}
+            \begin{itemize}
+                \item $E[c] = c$ (si $c$ es constante)
+                \item $E[aX + b] = a \cdot E[X] + b$
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% Diapositiva 3: Varianza y Desviación Estándar
+\begin{frame}{Varianza y Desviación Estándar}
+    \begin{block}{Definición}
+        La \textbf{Varianza} $Var(X) = \sigma^2$ mide el grado de dispersión o variabilidad de los valores de la variable aleatoria con respecto a su media $\mu$.
+    \end{block}
+
+    \vspace{0.2cm}
+    \textbf{Fórmulas de Cálculo:}
+    $$\sigma^2 = Var(X) = E[(X - \mu)^2] = \sum (x - \mu)^2 \cdot P(X = x)$$
+    
+    O de forma simplificada:
+    $$Var(X) = E[X^2] - (E[X])^2 \quad \text{donde } E[X^2] = \sum x^2 \cdot P(X = x)$$
+
+    \vspace{0.2cm}
+    \textbf{Desviación Estándar ($\sigma$):}
+    $$\sigma = \sqrt{Var(X)}$$
+    *(Devuelve la medida a las mismas unidades originales de la variable)*
+\end{frame}
+
+%=============================================================================
+\section{Distribución Binomial}
+%=============================================================================
+
+\begin{frame}{Distribución Binomial: Fundamentos Teóricos}
+    \begin{block}{Definición}
+        Modela el número de éxitos $X$ en $n$ ensayos independientes de Bernoulli, donde cada ensayo tiene solo dos posibles resultados: \textbf{Éxito} ($P = p$) o \textbf{Fracaso} ($Q = 1-p$).
+    \end{block}
+    
+    \vspace{0.2cm}
+    \textbf{Función de Masa de Probabilidad (FMP):}
+    $$P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}, \quad k = 0, 1, 2, \dots, n$$
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Parámetros:}
+            \begin{itemize}
+                \item $n$: número de ensayos
+                \item $p$: probabilidad de éxito
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \textbf{Propiedades:}
+            \begin{itemize}
+                \item Esperanza: $\mu = E[X] = n \cdot p$
+                \item Varianza: $\sigma^2 = Var(X) = n \cdot p \cdot (1-p)$
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% Ejercicio 1 Binomial
+\begin{frame}{Distribución Binomial — Ejercicio 1}
+    \begin{exampleblock}{Enunciado: Control de Calidad en Producción}
+        Una fábrica produce componentes electrónicos con una tasa de defecto del 5\% ($p=0.05$). Si se toma una muestra aleatoria de 10 componentes, ¿cuál es la probabilidad de encontrar exactamente 2 componentes defectuosos?
+    \end{exampleblock}
+    
+    \textbf{Solución:}
+    \begin{itemize}
+        \item Identificación de parámetros: $n = 10$, $p = 0.05$, $k = 2$.
+        \item Aplicando la fórmula:
+        $$P(X = 2) = \binom{10}{2} (0.05)^2 (0.95)^{10-2}$$
+        \item Cálculo del coeficiente binomial: $\binom{10}{2} = \frac{10 \times 9}{2} = 45$.
+        \item Sustituyendo:
+        $$P(X = 2) = 45 \times 0.0025 \times (0.95)^8 = 45 \times 0.0025 \times 0.6634 \approx \mathbf{0.0746} \quad (7.46\%)$$
+    \end{itemize}
+\end{frame}
+
+% Ejercicio 2 Binomial
+\begin{frame}{Distribución Binomial — Ejercicio 2}
+    \begin{exampleblock}{Enunciado: Examen de Opción Múltiple}
+        Un estudiante responde al azar un examen de 8 preguntas con 4 opciones cada una ($p = 0.25$). ¿Cuál es la probabilidad de aprobar respondiendo correctamente al menos 5 preguntas?
+    \end{exampleblock}
+    \pause
+    \textbf{Solución:}
+    \begin{itemize}
+        \item Queremos calcular $P(X \ge 5) = P(X=5) + P(X=6) + P(X=7) + P(X=8)$ con $n=8, p=0.25$.
+        \item $P(X=5) = \binom{8}{5} (0.25)^5 (0.75)^3 = 56 \times 0.0009765 \times 0.421875 \approx 0.0231$
+        \item $P(X=6) = \binom{8}{6} (0.25)^6 (0.75)^2 = 28 \times 0.0002441 \times 0.5625 \approx 0.0038$
+        \item $P(X=7) = \binom{8}{7} (0.25)^7 (0.75)^1 = 8 \times 0.000061 \times 0.75 \approx 0.0004$
+        \item $P(X=8) = \binom{8}{8} (0.25)^8 (0.75)^0 = 1 \times 0.000015 \times 1 \approx 0.000015$
+        \item Sumando: $P(X \ge 5) = 0.0231 + 0.0038 + 0.0004 + 0.0000 = \mathbf{0.0273} \quad (2.73\%)$
+    \end{itemize}
+\end{frame}
+
+% Ejercicio 3 Binomial
+\begin{frame}{Distribución Binomial — Ejercicio 3}
+    \begin{exampleblock}{Enunciado: Efectividad de Tratamiento Médico}
+        Un medicamento tiene un 80\% de eficacia ($p=0.80$). Si se administra a 6 pacientes, calcula el número esperado y la varianza de pacientes curados.
+    \end{exampleblock}
+        \pause
+    \textbf{Solución:}
+    \begin{itemize}
+        \item Parámetros: $n = 6$, $p = 0.80$, $q = 1 - p = 0.20$.
+        \vspace{0.2cm}
+        \item \textbf{Esperanza matemática (Valor Esperado):}
+        $$\mu = E[X] = n \cdot p = 6 \times 0.80 = \mathbf{4.8 \text{ pacientes}}$$
+        
+        \item \textbf{Varianza:}
+        $$\sigma^2 = Var(X) = n \cdot p \cdot q = 6 \times 0.80 \times 0.20 = \mathbf{0.96}$$
+        
+        \item \textbf{Desviación Estándar:}
+        $$\sigma = \sqrt{0.96} \approx \mathbf{0.98}$$
+    \end{itemize}
+\end{frame}
+
+% Ejercicio 4 Binomial
+\begin{frame}{Distribución Binomial — Ejercicio 4}
+    \begin{exampleblock}{Enunciado: Probabilidad del Complemento}
+        La probabilidad de que una semilla germine es 0.90. Si se siembran 5 semillas, ¿cuál es la probabilidad de que germine al menos una?
+    \end{exampleblock}
+        \pause
+    \textbf{Solución:}
+    \begin{itemize}
+        \item Datos: $n = 5$, $p = 0.90$.
+        \item Nos piden $P(X \ge 1)$. Es más eficiente usar el evento complementario $P(X = 0)$:
+        $$P(X \ge 1) = 1 - P(X = 0)$$
+        \item Calculamos $P(X = 0)$:
+        $$P(X = 0) = \binom{5}{0} (0.90)^0 (0.10)^5 = 1 \times 1 \times 0.00001 = 0.00001$$
+        \item Por lo tanto:
+        $$P(X \ge 1) = 1 - 0.00001 = \mathbf{0.99999} \quad (99.999\%)$$
+    \end{itemize}
+\end{frame}
+
+% Ejercicio 5 Binomial
+\begin{frame}{Distribución Binomial — Ejercicio 5}
+    \begin{exampleblock}{Enunciado: Lanzamiento de Moneda}
+        Se lanza una moneda justa 10 veces ($p=0.5$). ¿Cuál es la probabilidad de obtener exactamente 5 caras?
+    \end{exampleblock}
+        \pause
+    \textbf{Solución:}
+    \begin{itemize}
+        \item Parámetros: $n = 10$, $p = 0.5$, $k = 5$.
+        \item Combinatoria: $\binom{10}{5} = \frac{10 \times 9 \times 8 \times 7 \times 6}{5 \times 4 \times 3 \times 2 \times 1} = 252$.
+        \item Aplicando la fórmula:
+        $$P(X = 5) = \binom{10}{5} (0.5)^5 (0.5)^5 = 252 \times (0.5)^{10}$$
+        $$P(X = 5) = 252 \times \frac{1}{1024} = \frac{252}{1024} \approx \mathbf{0.2461} \quad (24.61\%)$$
+    \end{itemize}
+\end{frame}
+
+% Ejercicio 6 Binomial
+\begin{frame}{Distribución Binomial — Ejercicio 6}
+    \begin{exampleblock}{Enunciado: Clientes que Realizan una Compra}
+        Se sabe que el 30\% de las personas que entran a una tienda realizan una compra. Si entran 7 clientes, ¿cuál es la probabilidad de que compren como máximo 2 personas?
+    \end{exampleblock}
+        \pause
+    \textbf{Solución:}
+    \begin{itemize}
+        \item Parámetros: $n = 7$, $p = 0.30$. Queremos $P(X \le 2) = P(X=0) + P(X=1) + P(X=2)$.
+        \item $P(X=0) = \binom{7}{0} (0.3)^0 (0.7)^7 = 1 \times 1 \times 0.08235 = 0.0824$
+        \item $P(X=1) = \binom{7}{1} (0.3)^1 (0.7)^6 = 7 \times 0.3 \times 0.11765 = 0.2471$
+        \item $P(X=2) = \binom{7}{2} (0.3)^2 (0.7)^5 = 21 \times 0.09 \times 0.16807 = 0.3177$
+        \item Sumando las probabilidades:
+        $$P(X \le 2) = 0.0824 + 0.2471 + 0.3177 = \mathbf{0.6472} \quad (64.72\%)$$
+    \end{itemize}
+\end{frame}
+
+%=============================================================================
+\section{Distribución Hipergeométrica}
+%=============================================================================
+
+\begin{frame}{Distribución Hipergeométrica: Fundamentos Teóricos}
+    \begin{block}{Definición}
+        Modela el número de éxitos $X$ en una muestra de tamaño $n$ extraída \textbf{SIN reemplazo} de una población finita de tamaño $N$, que contiene $K$ elementos con la característica deseada (éxitos).
+    \end{block}
+    
+    \vspace{0.2cm}
+    \textbf{Función de Masa de Probabilidad (FMP):}
+    $$P(X = k) = \frac{\binom{K}{k} \binom{N-K}{n-k}}{\binom{N}{n}}$$
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Parámetros:}
+            \begin{itemize}
+                \item $N$: tamaño de la población
+                \item $K$: número de éxitos en la población
+                \item $n$: tamaño de la muestra
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \textbf{Propiedades:}
+            \begin{itemize}
+                \item Esperanza: $\mu = n \cdot \frac{K}{N}$
+                \item Varianza: $\sigma^2 = n \cdot \frac{K}{N} \left(1 - \frac{K}{N}\right) \left(\frac{N-n}{N-1}\right)$
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% Ejercicio 1 Hipergeométrica
+\begin{frame}{Distribución Hipergeométrica — Ejercicio 1}
+    \begin{exampleblock}{Enunciado: Selección de Personal}
+        Un comité de 4 personas se elegirá al azar entre un grupo de 10 candidatos: 6 mujeres y 4 hombres. ¿Cuál es la probabilidad de que el comité esté formado por exactamente 2 mujeres y 2 hombres?
+    \end{exampleblock}
+        \pause
+    \textbf{Solución:}
+    \begin{itemize}
+        \item Parámetros: $N = 10$, $K = 6$ (mujeres), $n = 4$, $k = 2$.
+        \item Aplicando la fórmula:
+        $$P(X = 2) = \frac{\binom{6}{2} \binom{10-6}{4-2}}{\binom{10}{4}} = \frac{\binom{6}{2} \binom{4}{2}}{\binom{10}{4}}$$
+        \item Calculando combinaciones:
+        $$\binom{6}{2} = 15, \quad \binom{4}{2} = 6, \quad \binom{10}{4} = 210$$
+        \item Sustituyendo:
+        $$P(X = 2) = \frac{15 \times 6}{210} = \frac{90}{210} = \mathbf{0.4286} \quad (42.86\%)$$
+    \end{itemize}
+\end{frame}
+
+% Ejercicio 2 Hipergeométrica
+\begin{frame}{Distribución Hipergeométrica — Ejercicio 2}
+    \begin{exampleblock}{Enunciado: Muestreo de Lote Defectuoso}
+        Un lote contiene 20 artículos, de los cuales 5 son defectuosos. Se inspecciona una muestra de 3 artículos sin reemplazo. ¿Cuál es la probabilidad de encontrar exactamente 1 defectuoso?
+    \end{exampleblock}
+        \pause
+    \textbf{Solución:}
+    \begin{itemize}
+        \item Parámetros: $N = 20$, $K = 5$, $n = 3$, $k = 1$.
+        \item Fórmula:
+        $$P(X = 1) = \frac{\binom{5}{1} \binom{20-5}{3-1}}{\binom{20}{3}} = \frac{\binom{5}{1} \binom{15}{2}}{\binom{20}{3}}$$
+        \item Valores combinatorios:
+        $$\binom{5}{1} = 5, \quad \binom{15}{2} = \frac{15 \times 14}{2} = 105, \quad \binom{20}{3} = \frac{20 \times 19 \times 18}{6} = 1140$$
+        \item Resultado:
+        $$P(X = 1) = \frac{5 \times 105}{1140} = \frac{525}{1140} \approx \mathbf{0.4605} \quad (46.05\%)$$
+    \end{itemize}
+\end{frame}
+
+% Ejercicio 3 Hipergeométrica
+\begin{frame}{Distribución Hipergeométrica — Ejercicio 3}
+    \begin{exampleblock}{Enunciado: Cartas de un Mazo}
+        De una baraja española de 40 cartas (que contiene 10 espadas), se extraen 5 cartas sin reemplazo. ¿Cuál es el número esperado y la varianza de cartas de espadas obtenidas?
+    \end{exampleblock}
+        \pause
+    \textbf{Solución:}
+    \begin{itemize}
+        \item Datos: $N = 40$, $K = 10$, $n = 5$.
+        \item \textbf{Esperanza matemática:}
+        $$\mu = n \cdot \frac{K}{N} = 5 \times \frac{10}{40} = 5 \times 0.25 = \mathbf{1.25 \text{ cartas}}$$
+        \item \textbf{Varianza:}
+        $$\sigma^2 = n \cdot \frac{K}{N} \cdot \left(1 - \frac{K}{N}\right) \cdot \left(\frac{N-n}{N-1}\right)$$
+        $$\sigma^2 = 5 \times 0.25 \times 0.75 \times \left(\frac{40-5}{40-1}\right) = 0.9375 \times \frac{35}{39} \approx \mathbf{0.8413}$$
+    \end{itemize}
+\end{frame}
+
+% Ejercicio 4 Hipergeométrica
+\begin{frame}{Distribución Hipergeométrica — Ejercicio 4}
+    \begin{exampleblock}{Enunciado: Control de Auditoría}
+        Un auditor revisa una carpeta con 12 facturas, de las cuales 3 contienen errores. Si elije 4 facturas al azar, ¿cuál es la probabilidad de que ninguna tenga errores?
+    \end{exampleblock}
+        \pause
+    \textbf{Solución:}
+    \begin{itemize}
+        \item Datos: $N = 12$, $K = 3$ (facturas con errores), $n = 4$, $k = 0$.
+        \item Expresión:
+        $$P(X = 0) = \frac{\binom{3}{0} \binom{12-3}{4-0}}{\binom{12}{4}} = \frac{\binom{3}{0} \binom{9}{4}}{\binom{12}{4}}$$
+        \item Cálculos:
+        $$\binom{3}{0} = 1, \quad \binom{9}{4} = 126, \quad \binom{12}{4} = 495$$
+        \item Resultado:
+        $$P(X = 0) = \frac{1 \times 126}{495} \approx \mathbf{0.2545} \quad (25.45\%)$$
+    \end{itemize}
+\end{frame}
+
+% Ejercicio 5 Hipergeométrica
+\begin{frame}{Distribución Hipergeométrica — Ejercicio 5}
+    \begin{exampleblock}{Enunciado: Estudiantes Aprobados}
+        En un aula de 15 alumnos, 10 aprobaron el parcial. Si se seleccionan 5 alumnos al azar, ¿cuál es la probabilidad de que al menos 4 hayan aprobado?
+    \end{exampleblock}
+        \pause
+    \textbf{Solución:}
+    \begin{itemize}
+        \item Queremos $P(X \ge 4) = P(X=4) + P(X=5)$ con $N=15, K=10, n=5$.
+        \item $\binom{15}{5} = 3003$.
+        \item $P(X = 4) = \frac{\binom{10}{4} \binom{5}{1}}{\binom{15}{5}} = \frac{210 \times 5}{3003} = \frac{1050}{3003} \approx 0.3496$
+        \item $P(X = 5) = \frac{\binom{10}{5} \binom{5}{0}}{\binom{15}{5}} = \frac{252 \times 1}{3003} = \frac{252}{3003} \approx 0.0839$
+        \item Sumando:
+        $$P(X \ge 4) = 0.3496 + 0.0839 = \mathbf{0.4335} \quad (43.35\%)$$
+    \end{itemize}
+\end{frame}
+
+% Ejercicio 6 Hipergeométrica
+\begin{frame}{Distribución Hipergeométrica — Ejercicio 6}
+    \begin{exampleblock}{Enunciado: Becas Universitarias}
+        De 8 postulantes a becas, 5 pertenecen a la carrera de Ingeniería. Si se otorgan 3 becas al azar, ¿cuál es la probabilidad de que todas las becas sean para estudiantes de Ingeniería?
+    \end{exampleblock}
+        \pause
+    \textbf{Solución:}
+    \begin{itemize}
+        \item Parámetros: $N = 8$, $K = 5$, $n = 3$, $k = 3$.
+        \item Aplicando la fórmula:
+        $$P(X = 3) = \frac{\binom{5}{3} \binom{8-5}{3-3}}{\binom{8}{3}} = \frac{\binom{5}{3} \binom{3}{0}}{\binom{8}{3}}$$
+        \item Evaluando las combinaciones:
+        $$\binom{5}{3} = 10, \quad \binom{3}{0} = 1, \quad \binom{8}{3} = 56$$
+        \item Respuesta:
+        $$P(X = 3) = \frac{10 \times 1}{56} = \frac{10}{56} \approx \mathbf{0.1786} \quad (17.86\%)$$
+    \end{itemize}
+\end{frame}
+
+%======================================================================%=============================================================================
+\section{Distribución de Poisson}
+%=============================================================================
+
+\begin{frame}{Distribución de Poisson: Fundamentos Teóricos}
+    \begin{block}{Definición}
+        Modela el número de eventos independientes $X$ que ocurren en un intervalo continuo fijo a una tasa media constante $\lambda$.
+    \end{block}
+    
+    \vspace{0.2cm}
+    \textbf{Función de Masa de Probabilidad (FMP):}
+    $$P(X = k) = \frac{e^{-\lambda} \lambda^k}{k!}, \quad k = 0, 1, 2, \dots$$
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Parámetro:}
+            \begin{itemize}
+                \item $\lambda$: número medio de ocurrencias ($\lambda > 0$).
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \textbf{Propiedades clave:}
+            \begin{itemize}
+                \item Esperanza: $\mu = E[X] = \lambda$
+                \item Varianza: $\sigma^2 = Var(X) = \lambda$
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% Ejercicio 1 Poisson
+\begin{frame}{Distribución de Poisson — Ejercicio 1}
+    \begin{exampleblock}{Enunciado: Llegadas a un Banco}
+        A una ventanilla de banco llegan en promedio 3 clientes por minuto ($\lambda = 3$). ¿Cuál es la probabilidad de que en un minuto dado lleguen exactamente 2 clientes?
+    \end{exampleblock}
+    
+    \textbf{Solución:}
+    \begin{itemize}
+        \item Identificación del parámetro: $\lambda = 3$, $k = 2$.
+        \item Aplicando la fórmula de Poisson:
+        $$P(X = 2) = \frac{e^{-3} \cdot 3^2}{2!}$$
+        \item Sustituyendo $e^{-3} \approx 0.04979$:
+        $$P(X = 2) = \frac{0.04979 \times 9}{2} = \frac{0.4481}{2} \approx \mathbf{0.2240} \quad (22.40\%)$$
+    \end{itemize}
+\end{frame}
+
+% Ejercicio 2 Poisson
+\begin{frame}{Distribución de Poisson — Ejercicio 2}
+    \begin{exampleblock}{Enunciado: Errores tipográficos}
+        Un libro impreso tiene en promedio 0.5 errores por página. ¿Cuál es la probabilidad de que una página elegida al azar no tenga ningún error?
+    \end{exampleblock}
+    
+    \textbf{Solución:}
+    \begin{itemize}
+        \item Parámetros: $\lambda = 0.5$, $k = 0$.
+        \item Sustituyendo en la fórmula:
+        $$P(X = 0) = \frac{e^{-0.5} \cdot (0.5)^0}{0!} = e^{-0.5} \approx \mathbf{0.6065} \quad (60.65\%)$$
+    \end{itemize}
+\end{frame}
+
+% Ejercicio 3 Poisson
+\begin{frame}{Distribución de Poisson — Ejercicio 3}
+    \begin{exampleblock}{Enunciado: Cambio de Intervalo de Tiempo}
+        Un call center recibe un promedio de 4 llamadas por hora. ¿Cuál es la probabilidad de recibir exactamente 2 llamadas en un período de 30 minutos?
+    \end{exampleblock}
+    
+    \textbf{Solución:}
+    \begin{itemize}
+        \item Ajuste de la tasa al nuevo intervalo:
+        $$\text{Si en 1 hora } \lambda = 4, \quad \text{en 30 min } \lambda' = 4 \times 0.5 = \mathbf{2}$$
+        \item Ahora calculamos $P(X = 2)$ con $\lambda' = 2$:
+        $$P(X = 2) = \frac{e^{-2} \cdot 2^2}{2!} = 2 \cdot e^{-2} \approx \mathbf{0.2707} \quad (27.07\%)$$
+    \end{itemize}
+\end{frame}
+
+% Ejercicio 4 Poisson
+\begin{frame}{Distribución de Poisson — Ejercicio 4}
+    \begin{exampleblock}{Enunciado: Tráfico Web}
+        Un sitio web recibe una media de 2 solicitudes por segundo. ¿Cuál es la probabilidad de recibir al menos 1 solicitud en un segundo determinado?
+    \end{exampleblock}
+    
+    \textbf{Solución:}
+    \begin{itemize}
+        \item Parámetro: $\lambda = 2$. Queremos $P(X \ge 1) = 1 - P(X = 0)$.
+        \item Calculamos $P(X = 0)$:
+        $$P(X = 0) = \frac{e^{-2} \cdot 2^0}{0!} = e^{-2} \approx 0.1353$$
+        \item Por tanto:
+        $$P(X \ge 1) = 1 - 0.1353 = \mathbf{0.8647} \quad (86.47\%)$$
+    \end{itemize}
+\end{frame}
+
+% Ejercicio 5 Poisson
+\begin{frame}{Distribución de Poisson — Ejercicio 5}
+    \begin{exampleblock}{Enunciado: Defectos por metro cuadrado}
+        Una tela industrial presenta en promedio 1.2 imperfecciones por $m^2$. ¿Cuál es la probabilidad de encontrar más de 2 imperfecciones en $1 m^2$?
+    \end{exampleblock}
+    
+    \textbf{Solución:}
+    \begin{itemize}
+        \item Parámetro: $\lambda = 1.2$. Queremos $P(X > 2) = 1 - [P(X=0) + P(X=1) + P(X=2)]$.
+        \item $P(X=0) = e^{-1.2} \approx 0.3012$
+        \item $P(X=1) = e^{-1.2} (1.2) \approx 0.3614$
+        \item $P(X=2) = \frac{e^{-1.2} (1.2)^2}{2} \approx 0.2169$
+        \item Resultado: $P(X > 2) = 1 - (0.3012 + 0.3614 + 0.2169) = \mathbf{0.1205} \quad (12.05\%)$
+    \end{itemize}
+\end{frame}
+
+% Ejercicio 6 Poisson
+\begin{frame}{Distribución de Poisson — Ejercicio 6}
+    \begin{exampleblock}{Enunciado: Aproximación de Binomial por Poisson}
+        Se envían 1000 paquetes. La probabilidad de que un paquete se pierda es 0.003. Mediante aproximación de Poisson, calcula la probabilidad de que se pierdan exactamente 3 paquetes.
+    \end{exampleblock}
+    
+    \textbf{Solución:}
+    \begin{itemize}
+        \item Como $n = 1000$ y $p = 0.003$, aproximamos con:
+        $$\lambda = n \cdot p = 1000 \times 0.003 = \mathbf{3}$$
+        \item Calculamos $P(X = 3)$ con $\lambda = 3$:
+        $$P(X = 3) = \frac{e^{-3} \cdot 3^3}{3!} = \frac{e^{-3} \cdot 27}{6} = 4.5 \cdot e^{-3} \approx \mathbf{0.2240} \quad (22.40\%)$$
+    \end{itemize}
+\end{frame}
+
+%=============================================================================
+\section{Resumen Comparativo}
+%=============================================================================
+
+\begin{frame}{Cuadro Comparativo de Distribuciones Discretas}
+    \begin{table}
+        \centering
+        \small
+        \begin{tabular}{p{2.2cm} p{3.2cm} p{3.2cm} p{3.2cm}}
+            \toprule
+            \textbf{Criterio} & \textbf{Binomial} & \textbf{Hipergeométrica} & \textbf{Poisson} \\
+            \midrule
+            \textbf{Muestreo} & Con reemplazo / Indep. & Sin reemplazo & Ocurrencia continua \\
+            \textbf{Población} & Infinita o muy grande & Finita ($N$) & Ocurrencias continuas \\
+            \textbf{Parámetros} & $n, p$ & $N, K, n$ & $\lambda$ \\
+            \textbf{Esperanza $\mu$} & $n \cdot p$ & $n \cdot \frac{K}{N}$ & $\lambda$ \\
+            \textbf{Varianza $\sigma^2$} & $n \cdot p \cdot (1-p)$ & $n \frac{K}{N} \left(1-\frac{K}{N}\right) \left(\frac{N-n}{N-1}\right)$ & $\lambda$ \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+\end{frame}
+
+\begin{frame}
+    \centering
+    \Huge \textbf{¡Muchas Gracias!}
+    
+    \vspace{0.5cm}
+    \Large ¿Preguntas o Dudas?
+\end{frame}
+
+\end{document}
