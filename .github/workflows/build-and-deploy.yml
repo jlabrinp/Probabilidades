@@ -28,7 +28,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-lang-spanish
 
-          # Compilar Guia 1.tex (soporta espacios en el nombre)
+          # Compilar Guia 1.tex
           if [ -f "Guia 1.tex" ]; then
             pdflatex -interaction=nonstopmode "Guia 1.tex" || true
             pdflatex -interaction=nonstopmode "Guia 1.tex" || true
