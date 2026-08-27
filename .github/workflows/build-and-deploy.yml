@@ -22,23 +22,25 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Verificar y Compilar LaTeX
+
+
+
+          - name: Verificar y Compilar LaTeX
         run: |
           mkdir -p docs/pdfs
+          sudo apt-get update && sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended
+          
+          # Compilar main.tex si existe
           if [ -f "main.tex" ]; then
-            echo "Compilando main.tex..."
-            sudo apt-get update && sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended
             pdflatex -interaction=nonstopmode main.tex || true
             cp main.pdf docs/pdfs/main.pdf || true
-          else
-            echo "No se encontró main.tex en la raíz."
           fi
-
+          
+          # Compilar Guia 1.tex si existe
           if [ -f "Guia 1.tex" ]; then
             pdflatex -interaction=nonstopmode "Guia 1.tex" || true
             cp "Guia 1.pdf" docs/pdfs/guia1.pdf || true
           fi
-          
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
