@@ -1,0 +1,268 @@
+\documentclass[letterpaper,11pt,spanish]{article}
+\usepackage[left=2cm,right=2cm,top=2.5cm,bottom=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{lettrine}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+
+%\usepackage{titlesec} 
+%\usepackage{setspace}  
+\usepackage{fancybox} 
+\usepackage{oldgerm} 
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{pstricks}
+\usepackage{makeidx}
+\usepackage{float}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{nicefrac}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+
+
+%%%%%%%%%%%%%%% Formato %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\fancyhead[LO,RE]{}
+\fancyfoot[C]{\footnotesize{Probabilidades} }
+\fancyfoot[LE,RO]{\thepage} 
+\pagestyle{fancy}
+%\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+%\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+%\renewcommand{\footrulewidth}{0.4pt}
+\input epsf
+\newcommand\yinitfamily{\usefont{U}{yinit}{m}{n}}
+\DeclareTextFontCommand{\textyinit}{\yinitfamily}
+%\usepackage{mathpazo,courier} \usepackage[scaled]{helvet}
+%\titleformat{\chapter}[display]
+%  {\bfseries\Large\filcenter}
+ % {\shadowbox{\Huge\scshape \chaptertitlename ~\thechapter}}{1pc}
+%  {\titlerule[1pt]
+ % \vspace{1pt}
+ % \titlerule
+  %\vspace{1pc}
+ % \Huge} 
+ % [\vspace{1pc}
+%   \titlerule]
+\usepackage[Bjornstrup]{fncychap}
+%\usepackage[T1]{fontenc}
+\usepackage{answers}
+\Newassociation{sol}{Solution}{ans}
+\newtheorem{ex}{}
+\usepackage[none]{hyphenat}
+
+%%%%%%%%%%%%%%% Newcommand  y Definition %%%%%%%%%%%%%%%%%%%%%
+\newcommand{\C}{\mathbb{C}} %Numeros Complejos
+\newcommand{\R}{\mathbb{R}} %Numeros Reale
+\newcommand{\Q}{\mathbb{Q}} %Numeros Racionales
+\newcommand{\Z}{\mathbb{Z}} %Numeros Enteros
+\newcommand{\N}{\mathbb{N}} %Numeros Naturales
+\newcommand{\D}{\mathbb{D}} %Conjunto D
+\newcommand{\I}{\mathbb{I}} %Conjunto I
+\newcommand{\K}{\mathbb{K}} %Conjunto K
+\newcommand{\X}{\mathbb{X}} %Conjunto X
+\newcommand{\Y}{\mathbb{Y}} %Conjunto Y
+\newcommand{\U}{\mathbb{U}} %Conjunto U 
+\newcommand{\V}{\mathbb{V}} %Conjunto V
+\newcommand{\E}{\mathbb{E}} %Conjunto E
+\newcommand{\B}{\mathbb{B}} %Conjunto B
+\newcommand{\La}{\mathcal{L}} %Transformada de Laplace
+\newcommand{\beq}{\begin{eqnarray*}}
+\newcommand{\eeq}{\end{eqnarray*}}
+\newcommand{\pel}{|\!\!\!\!\left[\right.} %Parte entera izquierda
+\newcommand{\per}{|\!\!\left.\right]} %Parte entera derecha
+\newcommand{\nl}{\newline}   		%Nueva Linea
+\newcommand{\ind}{\indent}   		%Indentar
+\newcommand{\noR}{/\!\!\!\!\mathcal{R}} %No Relacionado
+\newcommand{\noord}{/\!\!\!\!{\preccurlyeq}} % No Relacion de orden
+\newcommand{\dis}{\displaystyle} % displaystyle
+\newcommand{\nt}{\noindent}
+\def\re{\mathop{\mbox{\normalfont Re}}\nolimits} %Parte Real de un complejo
+\def\im{\mathop{\mbox{\normalfont Im}}\nolimits} %Parte Imaginaria de un complejo
+\def\co{\mathop{\mbox{\normalfont co}}\nolimits} %Capsula convexa
+\def\mes{\mathop{\mbox{\normalfont mes}}\nolimits} %Medida de Lebesgue
+\def\rad{\mathop{\mbox{\normalfont rad}}\nolimits} %Radianes
+\def\ctg{\mathop{\mbox{\normalfont ctg}}\nolimits} %Cotangente
+\def\arcctg{\mathop{\mbox{\normalfont arc\:ctg}}\nolimits} %Arco-cotangente
+\def\arcsec{\mathop{\mbox{\normalfont arc\:sec}}\nolimits} %Arco-secante
+\def\arccsc{\mathop{\mbox{\normalfont arc\:csc}}\nolimits} %Arco-cosecante
+
+\parindent=0pt
+
+%%%%%%%%%%%%%%%% Tags %%%%%%%%%%%%%%%%%%%%%%
+
+%\newtheorem{theo}{Teorema}
+\newtheorem{acknowledgement}{Agradecimientos}
+\newtheorem{corollary}{Corolario}
+\newtheorem{Obs}{Observaci\'on}
+\newtheorem{obs}{Observaci\'on}
+\newtheorem{example}{Ejemplo}
+\newtheorem{exercise}{Ejercicio}
+\newtheorem{lemma}{Lema}
+\newtheorem{notation}{Notaci\'on}
+\newtheorem{problem}{Problema}
+\newtheorem{proposition}{Proposici\'on}
+\newtheorem{remark}{Observaci\'on}
+\newtheorem{solution}{Soluci\'on}
+%\newtheorem{defi}{Definici\'on}
+%\newenvironment{proof}[1][Demostraci\'on]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcounter{defi}[section]\setcounter{defi}{0}
+\renewcommand{\thedefi}{\arabic{section}.\arabic{defi}}
+\newenvironment{defi}[2][]{%
+\refstepcounter{defi}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=gray!20]
+{\strut Definici\'on~\thedefi};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=gray!20]
+{\strut Definici\'on~\thedefi:~#1};}}%
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=gray!20,%
+linewidth=2pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+
+
+
+\newcounter{theo}[section]\setcounter{theo}{0}
+\renewcommand{\thetheo}{\arabic{section}.\arabic{theo}}
+\newenvironment{theo}[2][]{%
+\refstepcounter{theo}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=gray!20]
+{\strut Teorema~\thetheo};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=gray!20]
+{\strut Teorema~\thetheo:~#1};}}%
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=gray!20,%
+linewidth=2pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+
+
+
+
+
+\begin{document}
+\sffamily
+\sloppy 
+\thispagestyle{empty} 
+
+\begin{minipage}{3.4cm}
+\includegraphics[width=3.4cm]{logo.png}
+\end{minipage}
+\begin{minipage}{3.8cm}
+{\large ESTADÍSTICA Y \\PROBABILIDAD}\\
+\textbf{ 3$^{\text{nd}}$H - OAK -PINE }\\
+{Mr. José Labrin}\\
+\end{minipage}
+\begin{minipage}{9.8cm}
+\begin{large}
+\framebox{\parbox[c][0.8cm][c]{9.8cm}{Nombre:\hspace{6cm}}}
+%\framebox{\parbox[c][0.8cm][c]{9cm}{Apellido:\hspace{5cm}}}
+\end{large}
+\end{minipage}
+
+
+\hrule height 0.5pt width 7.3in\vskip 3pt
+\hrule height 2pt width 7.3in
+\begin{center}
+{\huge GUÍA DE EJERCICIOS - PROBABILIDADES}\\
+\end{center}
+\hrule height 0.5pt width 7.3in\vskip 3pt
+\hrule height 2pt width 7.3in 
+
+\bigskip
+
+\begin{enumerate}
+ \item   Se lanza un dado de 6 caras. Determine la probabilidad de obtener un número que sea primo dado que en el lanzamiento se obtuvo un número impar.
+    
+    \item Se extraen sucesivamente dos cartas de una baraja estándar de 52 cartas sin reemplazo. Si se sabe que la primera carta extraída fue un rey, ¿cuál es la probabilidad de que la segunda carta también sea un rey?
+    
+    \item En la extracción de dos cartas de una baraja de 52 cartas sin reemplazo, calcule la probabilidad de que la segunda carta sea un as, sabiendo que la primera carta fue un corazón.
+    
+    \item Se lanzan dos dados normales. Encuentre la probabilidad de que la suma de los puntos obtenidos sea mayor o igual a 8, dado que en el primer dado se obtuvo un 4.
+    
+    \item En una familia con dos hijos, se sabe que al menos uno de ellos es varón. Suponiendo que la probabilidad de que un hijo sea varón o mujer es la misma (1/2), calcule la probabilidad de que ambos hijos sean varones.
+    
+    
+    \item En una fábrica de pernos, la línea de producción A produce el 60\% de los pernos y la línea B el 40\%. El 2\% de los pernos de la línea A son defectuosos, mientras que el 3\% de los de la línea B lo son. Si se selecciona un perno al azar del almacén y resulta estar defectuoso, calcule la probabilidad de que haya sido fabricado por la línea A.
+    
+    \item En un grupo universitario, el 30\% de los alumnos reprueba Matemáticas, el 20\% reprueba Química y el 10\% reprueba ambas materias. Si se elige un estudiante al azar y se descubre que reprobó Matemáticas, ¿cuál es la probabilidad de que también haya reprobado Química?
+    
+    
+    \item Un estudiante se presenta a un examen de opción múltiple de verdadero o falso. El estudiante sabe la respuesta de una pregunta con probabilidad 0.6; si no la sabe, adivina el resultado con probabilidad 0.5. Si el estudiante responde correctamente a la pregunta, determine la probabilidad de que realmente supiera la respuesta (y no que haya adivinado).
+    
+    
+    \item La Caja I contiene 3 perlas rojas y 2 azules. La Caja II contiene 2 perlas rojas y 8 azules. Se lanza una moneda justa: si sale cara, se elige al azar una perla de la Caja I; si sale cruz, se elige de la Caja II. Si la perla seleccionada resulta ser roja, calcule la probabilidad de que la moneda haya caído en cara.
+    
+  
+    
+    \item En un taller mecánico, el 70\% de los mecánicos son hombres y el 30\% son mujeres. El 15\% de los hombres se especializa en transmisiones automáticas, mientras que solo el 5\% de las mujeres cuenta con esa especialización. Si se selecciona al azar a un mecánico especialista en transmisiones, ¿cuál es la probabilidad de que sea mujer?
+    
+    
+    
+    \item Un lote de 20 dispositivos electrónicos contiene exactamente 4 defectuosos. Si un técnico selecciona al azar tres dispositivos uno tras otro sin reemplazo para probarlos, calcule la probabilidad de que los tres dispositivos seleccionados resulten defectuosos.
+    
+    \item En la biblioteca de un aula hay 8 libros de Matemáticas y 4 de Física. Si se eligen tres libros al azar uno tras otro sin reemplazo, calcule la probabilidad de que los dos primeros seleccionados sean de Matemáticas y el tercero sea de Física.
+    
+    \item En un cofre antiguo hay 10 monedas de plata y 5 monedas de oro. Si se extraen dos monedas de forma consecutiva y sin reemplazo, ¿cuál es la probabilidad de que la primera sea de plata y la segunda de oro?
+    
+    \item De un comité escolar compuesto por 10 alumnas y 5 alumnos se seleccionan al azar a tres representantes uno tras otro de forma sucesiva. Determine la probabilidad de que los tres representantes elegidos sean mujeres.
+    
+    \item Una caja de herramientas contiene 12 llaves inglesas, de las cuales se sabe que 3 están oxidadas debido a la humedad. Si un mecánico toma dos llaves al azar sin reemplazo, calcule la probabilidad de que ninguna de las dos esté oxidada.
+    
+    \item En una bolsa hay 6 caramelos de menta y 4 caramelos de fresa. Un niño extrae un caramelo de la bolsa, se lo come, y luego extrae un segundo caramelo. Halle la probabilidad de que el niño coma primero un caramelo de menta y después uno de fresa.
+    
+    \item En un club de tenis hay 12 jugadores registrados: 8 diestros y 4 zurdos. Si se eligen al azar a dos jugadores para disputar el partido de exhibición inaugural, calcule la probabilidad de que ambos jugadores resulten ser zurdos.
+    
+    \item Se tienen 10 procesadores para servidores de los cuales 2 tienen fallas de fábrica. Si un ingeniero de sistemas selecciona 4 procesadores uno por uno sin reemplazo para instalarlos en un nodo de red, determine la probabilidad de que ninguno de los procesadores seleccionados tenga fallas de fábrica.
+    
+    
+    \item En un corral hay 12 gallinas: 7 son blancas y 5 son de color marrón. Si se escapan dos gallinas sucesivamente a través de una rendija, calcule la probabilidad de que ambas gallinas fugitivas sean marrones.
+    
+    \item Un repartidor tiene en su bolsillo 4 monedas de 1 dólar y 6 monedas de 50 centavos de dólar. Si saca al azar dos monedas del bolsillo una tras otra sin reemplazo, halle la probabilidad de que ambas monedas resulten ser de 1 dólar.
+    
+    
+    \item Se colocan dos urnas diferentes sobre una mesa. La Urna A contiene 3 esferas rojas y 2 blancas. La Urna B contiene 4 esferas rojas y 5 blancas. Si se extrae una esfera de cada urna de manera independiente, calcule la probabilidad de que ambas esferas resulten ser rojas. 
+    
+    \item Dos estudiantes, Carlos y Sofía, realizan un examen escrito de manera independiente. Se sabe por su historial académico que la probabilidad de que Carlos apruebe es de 0.8, mientras que la probabilidad de que Sofía apruebe es de 0.9. Calcule la probabilidad de que ambos estudiantes aprueben el examen.
+    
+    
+    \item Dos sistemas de seguridad electrónica funcionan de manera totalmente independiente en una bóveda bancaria. El sistema A falla en promedio con una probabilidad de 0.01 y el sistema B falla con una probabilidad de 0.02. Calcule la probabilidad de que ambos sistemas fallen simultáneamente ante un intento de intrusión.
+    
+    \item Un arquero profesional tiene una probabilidad histórica de dar en el blanco del 75\%. Si realiza dos disparos consecutivos e independientes, halle la probabilidad de que acierte en el blanco en ambos disparos.
+    
+   
+    
+    \item Se extrae una carta de una baraja de 52 cartas, se registra su valor, se devuelve al mazo, se mezcla bien y se vuelve a extraer una carta al azar. Determine la probabilidad de obtener dos cartas de la familia de corazones de manera consecutiva.
+\end{enumerate}
+
+
+
+
+\end{document}
