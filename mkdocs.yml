@@ -1,0 +1,30 @@
+site_name: Mi Repositorio de Material
+site_description: Apuntes, PDFs compilados y recursos multimedia
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Modo oscuro
+    - scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Modo claro
+  features:
+    - navigation.indexes
+    - navigation.expand
+    - search.suggest
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+
+nav:
+  - Inicio: index.md
+  - Documentos PDF: visores-pdf.md
+  - Imágenes: imagenes.md
+  - Videos: videos.md
