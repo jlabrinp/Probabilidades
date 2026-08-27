@@ -34,6 +34,11 @@ jobs:
             echo "No se encontró main.tex en la raíz."
           fi
 
+          if [ -f "Guia 1.tex" ]; then
+            pdflatex -interaction=nonstopmode "Guia 1.tex" || true
+            cp "Guia 1.pdf" docs/pdfs/guia1.pdf || true
+          fi
+          
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
