@@ -1,0 +1,46 @@
+name: Compilar y Desplegar Sitio Web
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del Repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Verificar y Compilar LaTeX
+        run: |
+          mkdir -p docs/pdfs
+          if [ -f "main.tex" ]; then
+            echo "Compilando main.tex..."
+            sudo apt-get update && sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended
+            pdflatex -interaction=nonstopmode main.tex || true
+            cp main.pdf docs/pdfs/main.pdf || true
+          else
+            echo "No se encontró main.tex en la raíz."
+          fi
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+
+      - name: Instalar MkDocs Material
+        run: pip install mkdocs-material
+
+      - name: Desplegar en GitHub Pages
+        run: mkdocs gh-deploy --force
