@@ -28,8 +28,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-lang-spanish
 
-          # Compilar Guia 1.tex
-          if [ -f "Gguia1.tex" ]; then
+          # Compilar guia1.tex
+          if [ -f "guia1.tex" ]; then
             pdflatex -interaction=nonstopmode "guia1.tex" || true
             pdflatex -interaction=nonstopmode "guia1.tex" || true
             cp "guia1.pdf" docs/pdfs/guia1.pdf || true
