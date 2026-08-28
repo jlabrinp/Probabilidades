@@ -22,24 +22,37 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Instalar Paquetes de LaTeX y Compilar
+      - name: Crear carpeta para PDFs
+        run: mkdir -p docs/pdfs
+
+      - name: Compilar guia1.tex
+        uses: xu-cheng/latex-action@v3
+        continue-on-error: true
+        with:
+          root_file: guia1.tex
+          args: "-pdf -interaction=nonstopmode"
+
+      - name: Compilar main.tex si existe
+        uses: xu-cheng/latex-action@v3
+        continue-on-error: true
+        with:
+          root_file: main.tex
+          args: "-pdf -interaction=nonstopmode"
+
+      - name: Mover PDFs compilados
         run: |
-          mkdir -p docs/pdfs
-          sudo apt-get update
-          sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-lang-spanish
-
-          # Compilar guia1.tex
-          if [ -f "guia1.tex" ]; then
-            pdflatex -interaction=nonstopmode guia1.tex || true
-            pdflatex -interaction=nonstopmode guia1.tex || true
-            cp guia1.pdf docs/pdfs/guia1.pdf || true
+          if [ -f "guia1.pdf" ]; then
+            cp guia1.pdf docs/pdfs/guia1.pdf
+            echo "guia1.pdf copiado con éxito."
+          else
+            echo "ERROR: guia1.pdf no se generó durante la compilación."
           fi
 
-          # Compilar main.tex si existe
-          if [ -f "main.tex" ]; then
-            pdflatex -interaction=nonstopmode main.tex || true
-            cp main.pdf docs/pdfs/main.pdf || true
+          if [ -f "main.pdf" ]; then
+            cp main.pdf docs/pdfs/main.pdf
           fi
+
+          ls -la docs/pdfs
 
       - name: Configurar Python
         uses: actions/setup-python@v5
