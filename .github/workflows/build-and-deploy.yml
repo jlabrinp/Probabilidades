@@ -32,6 +32,13 @@ jobs:
           root_file: guia1.tex
           args: "-pdf -interaction=nonstopmode"
 
+             - name: Compilar guia3.tex
+        uses: xu-cheng/latex-action@v3
+        continue-on-error: true
+        with:
+          root_file: guia3.tex
+          args: "-pdf -interaction=nonstopmode"
+
       - name: Compilar main.tex si existe
         uses: xu-cheng/latex-action@v3
         continue-on-error: true
@@ -51,23 +58,14 @@ jobs:
           if [ -f "main.pdf" ]; then
             cp main.pdf docs/pdfs/main.pdf
           fi
-
-          ls -la docs/pdfs
-
-           - name: Mover PDFs compilados
-        run: |
-          if [ -f "guia3.pdf" ]; then
-            cp guia2.pdf docs/pdfs/guia3.pdf
-            echo "guia3.pdf copiado con éxito."
-          else
-            echo "ERROR: guia3.pdf no se generó durante la compilación."
-          fi
-
-          if [ -f "main.pdf" ]; then
+           if [ -f "guia3.pdf" ]; then
             cp main.pdf docs/pdfs/main.pdf
           fi
 
           ls -la docs/pdfs
+
+           - name: Mover PDFs compilados
+      
           
 
       - name: Configurar Python
