@@ -54,6 +54,22 @@ jobs:
 
           ls -la docs/pdfs
 
+           - name: Mover PDFs compilados
+        run: |
+          if [ -f "guia2.pdf" ]; then
+            cp guia2.pdf docs/pdfs/guia2.pdf
+            echo "guia2.pdf copiado con éxito."
+          else
+            echo "ERROR: guia2.pdf no se generó durante la compilación."
+          fi
+
+          if [ -f "main.pdf" ]; then
+            cp main.pdf docs/pdfs/main.pdf
+          fi
+
+          ls -la docs/pdfs
+          
+
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
