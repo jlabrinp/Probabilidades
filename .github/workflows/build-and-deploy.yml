@@ -52,21 +52,21 @@ jobs:
             cp guia1.pdf docs/pdfs/guia1.pdf
             echo "guia1.pdf copiado con éxito."
           else
-            echo "ERROR: guia1.pdf no se generó durante la compilación."
+            echo "ERROR: guia1.pdf no se generó."
+          fi
+
+          if [ -f "guia3.pdf" ]; then
+            cp guia3.pdf docs/pdfs/guia3.pdf   # ✅ Corregido
+            echo "guia3.pdf copiado con éxito."
+          else
+            echo "ERROR: guia3.pdf no se generó."
           fi
 
           if [ -f "main.pdf" ]; then
             cp main.pdf docs/pdfs/main.pdf
             echo "main.pdf copiado con éxito."
           else
-            echo "main.pdf no se generó."
-          fi
-
-          if [ -f "guia3.pdf" ]; then
-            cp guia3.pdf docs/pdfs/guia3.pdf   # <--- CORREGIDO
-            echo "guia3.pdf copiado con éxito."
-          else
-            echo "guia3.pdf no se generó."
+            echo "ERROR: main.pdf no se generó."
           fi
 
           ls -la docs/pdfs
