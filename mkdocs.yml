@@ -1,59 +1,31 @@
 site_name: Mi Repositorio de Material
 site_description: Apuntes, PDFs compilados y recursos multimedia
-site_author: Tu Nombre
-copyright: Copyright &copy; 2026 - Tu Nombre
-
-# Enlace al repositorio (para que aparezca el icono de GitHub en la barra)
-repo_url: https://github.com/tu-usuario/tu-repo
-edit_uri: edit/main/docs/   # Permite editar páginas directamente desde el sitio
 
 theme:
   name: material
   palette:
     - scheme: default
       primary: indigo
-      accent: indigo
       toggle:
         icon: material/brightness-7
         name: Modo oscuro
     - scheme: slate
       primary: indigo
-      accent: indigo
       toggle:
         icon: material/brightness-4
         name: Modo claro
   features:
-    - navigation.indexes      # Índices automáticos en secciones
-    - navigation.expand       # Expande todos los submenús
-    - navigation.sections     # Agrupa secciones
-    - search.suggest          # Sugerencias en la búsqueda
-    - content.tabs.link       # Sincroniza pestañas de contenido
-    - content.code.annotate   # Anotaciones en bloques de código
-  language: es                # Idioma español
+    - navigation.indexes
+    - navigation.expand
+    - search.suggest
 
-# Plugins (búscqueda y minificación opcional)
-plugins:
-  - search
-  - minify:
-      minify_html: true       # Reduce el tamaño del HTML generado
-
-# Extensiones de Markdown para dar más potencia
 markdown_extensions:
-  - attr_list                 # Atributos HTML en Markdown (ej: {#id .class})
-  - md_in_html                # Permite Markdown dentro de etiquetas HTML
-  - toc:
-      permalink: true         # Añade enlaces permanentes a los encabezados
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.superfences      # Soporte para diagramas y bloques anidados
+  - attr_list
+  - md_in_html
 
-# Navegación principal
 nav:
   - Inicio: index.md
-  - Documentos PDF:
-    - Guía 1: guia1.md
-    - Guía 3: guia3.md
-    - Documento Principal: main.md
-  - Recursos Multimedia:
-    - Imágenes: imagenes.md
-    - Videos: videos.md
+  - Documentos PDF: visores-pdf.md
+  - Imágenes: imagenes.md
+  - Videos: videos.md
+  - Guía 1: visores-pdf.md
