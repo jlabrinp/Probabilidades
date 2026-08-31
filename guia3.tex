@@ -1,0 +1,511 @@
+\documentclass[letterpaper,12pt,spanish]{article}
+\usepackage[left=2cm,right=2cm,top=3cm,bottom=3.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{lettrine}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+
+%\usepackage{titlesec} 
+%\usepackage{setspace}  
+\usepackage{fancybox} 
+\usepackage{oldgerm} 
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{pstricks}
+\usepackage{makeidx}
+\usepackage{float}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{nicefrac}
+\usepackage[framemethod=TikZ]{mdframed}
+
+
+%%%%%%%%%%%%%%% Formato %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\fancyhead[LO,RE]{}
+\fancyfoot[C]{\footnotesize{ Variable Aleatoria y Distribuciones Discretas} }
+\fancyfoot[LE,RO]{\thepage} 
+\pagestyle{fancy}
+%\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+%\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+%\renewcommand{\footrulewidth}{0.4pt}
+\input epsf
+\newcommand\yinitfamily{\usefont{U}{yinit}{m}{n}}
+\DeclareTextFontCommand{\textyinit}{\yinitfamily}
+%\usepackage{mathpazo,courier} \usepackage[scaled]{helvet}
+%\titleformat{\chapter}[display]
+%  {\bfseries\Large\filcenter}
+ % {\shadowbox{\Huge\scshape \chaptertitlename ~\thechapter}}{1pc}
+%  {\titlerule[1pt]
+ % \vspace{1pt}
+ % \titlerule
+  %\vspace{1pc}
+ % \Huge} 
+ % [\vspace{1pc}
+%   \titlerule]
+\usepackage[Bjornstrup]{fncychap}
+%\usepackage[T1]{fontenc}
+\usepackage{answers}
+\Newassociation{sol}{Solution}{ans}
+\newtheorem{ex}{}
+\usepackage[none]{hyphenat}
+
+%%%%%%%%%%%%%%% Newcommand  y Definition %%%%%%%%%%%%%%%%%%%%%
+\newcommand{\C}{\mathbb{C}} %Numeros Complejos
+\newcommand{\R}{\mathbb{R}} %Numeros Reale
+\newcommand{\Q}{\mathbb{Q}} %Numeros Racionales
+\newcommand{\Z}{\mathbb{Z}} %Numeros Enteros
+\newcommand{\N}{\mathbb{N}} %Numeros Naturales
+\newcommand{\D}{\mathbb{D}} %Conjunto D
+\newcommand{\I}{\mathbb{I}} %Conjunto I
+\newcommand{\K}{\mathbb{K}} %Conjunto K
+\newcommand{\X}{\mathbb{X}} %Conjunto X
+\newcommand{\Y}{\mathbb{Y}} %Conjunto Y
+\newcommand{\U}{\mathbb{U}} %Conjunto U 
+\newcommand{\V}{\mathbb{V}} %Conjunto V
+\newcommand{\E}{\mathbb{E}} %Conjunto E
+\newcommand{\B}{\mathbb{B}} %Conjunto B
+\newcommand{\La}{\mathcal{L}} %Transformada de Laplace
+\newcommand{\beq}{\begin{eqnarray*}}
+\newcommand{\eeq}{\end{eqnarray*}}
+\newcommand{\pel}{|\!\!\!\!\left[\right.} %Parte entera izquierda
+\newcommand{\per}{|\!\!\left.\right]} %Parte entera derecha
+\newcommand{\nl}{\newline}   		%Nueva Linea
+\newcommand{\ind}{\indent}   		%Indentar
+\newcommand{\noR}{/\!\!\!\!\mathcal{R}} %No Relacionado
+\newcommand{\noord}{/\!\!\!\!{\preccurlyeq}} % No Relacion de orden
+\newcommand{\dis}{\displaystyle} % displaystyle
+\newcommand{\nt}{\noindent}
+\def\re{\mathop{\mbox{\normalfont Re}}\nolimits} %Parte Real de un complejo
+\def\im{\mathop{\mbox{\normalfont Im}}\nolimits} %Parte Imaginaria de un complejo
+\def\co{\mathop{\mbox{\normalfont co}}\nolimits} %Capsula convexa
+\def\mes{\mathop{\mbox{\normalfont mes}}\nolimits} %Medida de Lebesgue
+\def\rad{\mathop{\mbox{\normalfont rad}}\nolimits} %Radianes
+\def\ctg{\mathop{\mbox{\normalfont ctg}}\nolimits} %Cotangente
+\def\arcctg{\mathop{\mbox{\normalfont arc\:ctg}}\nolimits} %Arco-cotangente
+\def\arcsec{\mathop{\mbox{\normalfont arc\:sec}}\nolimits} %Arco-secante
+\def\arccsc{\mathop{\mbox{\normalfont arc\:csc}}\nolimits} %Arco-cosecante
+
+\parindent=0pt
+
+%%%%%%%%%%%%%%%% Tags %%%%%%%%%%%%%%%%%%%%%%
+
+%\newtheorem{theo}{Teorema}
+\newtheorem{acknowledgement}{Agradecimientos}
+\newtheorem{corollary}{Corolario}
+\newtheorem{Obs}{Observaci\'on}
+\newtheorem{obs}{Observaci\'on}
+\newtheorem{example}{Ejemplo}
+\newtheorem{exercise}{Ejercicio}
+\newtheorem{lemma}{Lema}
+\newtheorem{notation}{Notaci\'on}
+\newtheorem{problem}{Problema}
+\newtheorem{proposition}{Proposici\'on}
+\newtheorem{remark}{Observaci\'on}
+\newtheorem{solution}{Soluci\'on}
+%\newtheorem{defi}{Definici\'on}
+%\newenvironment{proof}[1][Demostraci\'on]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcounter{defi}[section]\setcounter{defi}{0}
+\renewcommand{\thedefi}{\arabic{section}.\arabic{defi}}
+\newenvironment{defi}[2][]{%
+\refstepcounter{defi}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=gray!20]
+{\strut Definici\'on~\thedefi};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=gray!20]
+{\strut Definici\'on~\thedefi:~#1};}}%
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=gray!20,%
+linewidth=2pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+
+
+
+\newcounter{theo}[section]\setcounter{theo}{0}
+\renewcommand{\thetheo}{\arabic{section}.\arabic{theo}}
+\newenvironment{theo}[2][]{%
+\refstepcounter{theo}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=gray!20]
+{\strut Teorema~\thetheo};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=gray!20]
+{\strut Teorema~\thetheo:~#1};}}%
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=gray!20,%
+linewidth=2pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+
+
+
+
+
+\begin{document}
+\sffamily
+\sloppy 
+\thispagestyle{empty} 
+
+\begin{minipage}{3.4cm}
+\includegraphics[width=3.4cm]{logoghs.png}
+\end{minipage}
+\begin{minipage}{3.8cm}
+{\large ESTADÍSTICA Y PROBABILIDAD}\\
+\textbf{ 3$^{\text{nd}}$H - OAK -PINE }\\
+{Mr. José Labrin}\\
+\end{minipage}
+\begin{minipage}{9.8cm}
+\begin{large}
+\framebox{\parbox[c][0.8cm][c]{9.8cm}{Nombre:\hspace{6cm}}}
+%\framebox{\parbox[c][0.8cm][c]{9cm}{Apellido:\hspace{5cm}}}
+\end{large}
+\end{minipage}
+\hrule
+\vspace{0.3cm}
+
+\begin{center}
+\hrule height 0.5pt width 17.6cm \vskip 3pt
+\hrule height 2pt width 17.6cm \vskip 5pt
+\huge
+Guía: Variable Aleatoria y Distribuciones Discretas \vskip 5pt
+\hrule height 2pt width 17.6cm  \vskip 3pt
+\hrule height 0.5pt width 17.6cm
+\bigskip
+\end{center}
+
+\section{Variable Aleatoria}
+
+\begin{enumerate}[label=\arabic*.]
+    \item Sea $X$ una variable aleatoria discreta que representa el número de caras obtenidas al lanzar tres monedas equilibradas de forma independiente.
+    \begin{enumerate}[label=\alph*)]
+        \item Determine el espacio muestral $\Omega$ del experimento aleatorio.
+        \item Indique el recorrido $R_X$ de la variable aleatoria.
+        \item Construya la tabla de la función de probabilidad $f(x) = P(X = x)$ y la función de distribución acumulada $F(x)$.
+        \item Calcule el valor esperado $E[X]$, la varianza $V(X)$ y la desviación estándar $\sigma_X$.
+    \end{enumerate}
+
+    \item Una variable aleatoria discreta $X$ tiene la siguiente función de probabilidad:
+    \[
+    f(x) = \begin{cases} 
+    k(2x + 1) & \text{si } x = 1, 2, 3, 4 \\
+    0 & \text{en otro caso}
+    \end{cases}
+    \]
+    \begin{enumerate}[label=\alph*)]
+        \item Determine el valor de la constante $k$ para que $f(x)$ sea una función de probabilidad válida.
+        \item Calcule $P(X \ge 3)$ y $P(1 < X \le 3)$.
+        \item Grafique la función de probabilidad $f(x)$ y la función acumulada $F(x)$.
+        \item Halle la esperanza matemática $E[X]$ y la varianza $V(X)$.
+    \end{enumerate}
+
+    \item En una urna hay 4 bolitas rojas y 2 bolitas azules. Se extraen 2 bolitas sucesivamente y sin reemplazo. Defina la variable aleatoria $X$ como el número de bolitas rojas obtenidas.
+    \begin{enumerate}[label=\alph*)]
+        \item Determine la función de probabilidad de $X$.
+        \item Calcule la probabilidad de obtener al menos una bolita roja.
+        \item Obtenga la media y la desviación estándar de $X$.
+    \end{enumerate}
+
+    \item Sea $X$ el número de vehículos que posee una familia en una determinada ciudad. La función de distribución acumulada $F(x)$ está dada por:
+    \[
+    F(x) = \begin{cases} 
+    0 & \text{si } x < 0 \\
+    0{,}25 & \text{si } 0 \le x < 1 \\
+    0{,}60 & \text{si } 1 \le x < 2 \\
+    0{,}85 & \text{si } 2 \le x < 3 \\
+    1{,}00 & \text{si } x \ge 3
+    \end{cases}
+    \]
+    \begin{enumerate}[label=\alph*)]
+        \item Obtenga la función de probabilidad $f(x) = P(X = x)$.
+        \item Calcule $P(X > 1)$ y $P(1 \le X < 3)$.
+        \item Determine el número promedio de vehículos por familia.
+    \end{enumerate}
+
+    \item Un comerciante compra 3 electrodomésticos para su reventa. La ganancia $G$ (en miles de pesos) por la venta de estos productos es una variable aleatoria con la siguiente distribución:
+    \[
+    \begin{array}{c|cccc}
+    g & -10 & 0 & 15 & 30 \\ \hline
+    P(G = g) & 0{,}10 & 0{,}20 & 0{,}50 & 0{,}20
+    \end{array}
+    \]
+    \begin{enumerate}[label=\alph*)]
+        \item Interprete el significado de una ganancia negativa en este contexto.
+        \item Calcule la ganancia esperada del comerciante.
+        \item Calcule la varianza y la desviación estándar de la ganancia.
+    \end{enumerate}
+\end{enumerate}
+
+\section{Distribución Binomial: $\mathcal{B}(n, p)$}
+
+\begin{enumerate}[label=\arabic*.]
+    \item La probabilidad de que un estudiante apruebe cierto examen de admisión es $0{,}75$. Se selecciona una muestra aleatoria de 8 estudiantes que rinden la prueba.
+    \begin{enumerate}[label=\alph*)]
+        \item ¿Cuál es la probabilidad de que exactamente 6 estudiantes aprueben?
+        \item ¿Cuál es la probabilidad de que al menos 7 aprueben?
+        \item ¿Cuál es la probabilidad de que entre 3 y 5 estudiantes (ambos inclusive) aprueben?
+        \item Determine la media y la varianza del número de estudiantes aprobados.
+    \end{enumerate}
+
+    \item Un control de calidad en una línea de ensamble automatizada detecta que el $5\%$ de los artículos producidos presentan algún defecto. Si se analiza un lote de 15 artículos de forma independiente:
+    \begin{enumerate}[label=\alph*)]
+        \item ¿Cuál es la probabilidad de encontrar exactamente un artículo defectuoso?
+        \item ¿Cuál es la probabilidad de encontrar a lo más 2 artículos defectuosos?
+        \item ¿Cuál es la probabilidad de encontrar más de 3 artículos defectuosos?
+        \item ¿Cuántos artículos defectuosos se espera encontrar en el lote?
+    \end{enumerate}
+
+    \item Un jugador de baloncesto encesta el $80\%$ de sus tiros libres. Si realiza 10 lanzamientos consecutivos en un entrenamiento:
+    \begin{enumerate}[label=\alph*)]
+        \item Determine la probabilidad de que enceste todos los tiros.
+        \item ¿Cuál es la probabilidad de que falle exactamente 2 tiros?
+        \item ¿Cuál es la probabilidad de que enceste al menos 8 lanzamientos?
+    \end{enumerate}
+
+    \item Una empresa envía un correo promocional a sus clientes. Se sabe que la probabilidad de que un cliente abra el correo y realice una compra es $0{,}12$. Si se envía el correo a 20 clientes:
+    \begin{enumerate}[label=\alph*)]
+        \item Calcule la probabilidad de que ningún cliente realice una compra.
+        \item Calcule la probabilidad de que al menos 3 clientes realicen una compra.
+        \item Halle el valor esperado y la desviación estándar del número de compras realizadas.
+    \end{enumerate}
+
+    \item Un examen tipo test consta de 12 preguntas, cada una con 4 opciones de respuesta donde solo una es correcta. Si un alumno responde todas las preguntas completamente al azar:
+    \begin{enumerate}[label=\alph*)]
+        \item Identifique los parámetros $n$ y $p$ de la distribución.
+        \item Calcule la probabilidad de contestar correctamente exactamente 4 preguntas.
+        \item ¿Cuál es la probabilidad de aprobar el examen si se requiere un mínimo de 6 respuestas correctas?
+    \end{enumerate}
+\end{enumerate}
+
+\section{Distribución Hipergeométrica: $\mathcal{H}(N, k, n)$}
+
+\begin{enumerate}[label=\arabic*.]
+    \item Un comité de 5 personas se elegirá al azar a partir de un grupo compuesto por 8 profesionales de la salud y 6 profesionales de la educación.
+    \begin{enumerate}[label=\alph*)]
+        \item ¿Cuál es la probabilidad de que el comité esté integrado por exactamente 3 profesionales de la salud?
+        \item ¿Cuál es la probabilidad de que en el comité haya al menos 4 profesionales de la educación?
+        \item Calcule la esperanza matemática y la varianza del número de profesionales de la salud en el comité.
+    \end{enumerate}
+
+    \item Un almacén contiene 20 componentes electrónicos, de los cuales 4 están defectuosos. Si un inspector selecciona 5 componentes al azar sin reemplazo para su revisión:
+    \begin{enumerate}[label=\alph*)]
+        \item ¿Cuál es la probabilidad de que ninguno de los componentes inspeccionados esté defectuoso?
+        \item ¿Cuál es la probabilidad de obtener exactamente 2 componentes defectuosos?
+        \item ¿Cuál es la probabilidad de encontrar al menos un componente defectuoso?
+    \end{enumerate}
+
+    \item De una baraja española estándar de 40 cartas, se extraen 6 cartas de manera simultánea (sin reemplazo).
+    \begin{enumerate}[label=\alph*)]
+        \item Determine la probabilidad de obtener exactamente 2 copas.
+        \item Determine la probabilidad de no obtener ningún as.
+        \item Calcule el número esperado de cartas de copas en la muestra.
+    \end{enumerate}
+
+    \item En un curso de 25 estudiantes, 15 prefieren el área de Matemáticas y 10 el área de Humanidades. Se selecciona una delegación de 4 estudiantes al azar.
+    \begin{enumerate}[label=\alph*)]
+        \item ¿Cuál es la probabilidad de que todos los integrantes prefieran Humanidades?
+        \item ¿Cuál es la probabilidad de que al menos 2 prefieran Matemáticas?
+    \end{enumerate}
+
+    \item Una caja de herramientas contiene 12 llaves inglesas, de las cuales 3 están descalibradas. Un mecánico elige 4 llaves al azar para realizar un trabajo en terreno.
+    \begin{enumerate}[label=\alph*)]
+        \item Calcule la probabilidad de que exactamente una de las llaves elegidas esté descalibrada.
+        \item Calcule la probabilidad de que como máximo 2 llaves estén descalibradas.
+    \end{enumerate}
+\end{enumerate}
+
+\section{Distribución de Poisson: $\mathcal{P}(\lambda)$}
+
+\begin{enumerate}[label=\arabic*.]
+    \item El número promedio de llamadas que ingresan a una central de soporte técnico es de 3 llamadas por minuto. Suponiendo que el proceso sigue un modelo de Poisson:
+    \begin{enumerate}[label=\alph*)]
+        \item ¿Cuál es la probabilidad de recibir exactamente 4 llamadas en un minuto determinado?
+        \item ¿Cuál es la probabilidad de recibir menos de 2 llamadas en un minuto?
+        \item ¿Cuál es la probabilidad de recibir exactamente 5 llamadas en un intervalo de 2 minutos?
+    \end{enumerate}
+
+    \item En una fábrica textil se detectan en promedio $0{,}8$ imperfecciones por cada metro cuadrado de tela producida.
+    \begin{enumerate}[label=\alph*)]
+        \item Calcule la probabilidad de que un metro cuadrado de tela seleccionado al azar no tenga imperfecciones.
+        \item Calcule la probabilidad de que en un paño de 3 metros cuadrados existan al menos 2 imperfecciones.
+        \item Determine la media y la desviación estándar del número de imperfecciones en un paño de 5 metros cuadrados.
+    \end{enumerate}
+
+    \item Un servidor web sufre una caída del sistema a razón de 2 veces por semana en promedio.
+    \begin{enumerate}[label=\alph*)]
+        \item Calcule la probabilidad de que en un período de dos semanas el servidor no sufra ninguna caída.
+        \item ¿Cuál es la probabilidad de que ocurran más de 3 caídas en un mes (considerando 4 semanas)?
+    \end{enumerate}
+
+    \item Las solicitudes de préstamos que llegan a un banco se registran a una tasa promedio de 1,5 solicitudes por hora.
+    \begin{enumerate}[label=\alph*)]
+        \item ¿Cuál es la probabilidad de que lleguen exactamente 2 solicitudes en un período de 2 horas?
+        \item ¿Cuál es la probabilidad de que no llegue ninguna solicitud en media hora?
+    \end{enumerate}
+
+    \item Los accidentes menores en un tramo carretero suceden a razón de 0,4 accidentes por día.
+    \begin{enumerate}[label=\alph*)]
+        \item Calcule la probabilidad de que ocurran exactamente 2 accidentes en una semana (7 días).
+        \item Calcule la probabilidad de que ocurra al menos un accidente en un período de 3 días.
+    \end{enumerate}
+\end{enumerate}
+\section*{Ejercicios Combinados de Aplicación}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+
+    % 1. V.A.D. Genérica
+    \item Sea $X$ una variable aleatoria discreta con la siguiente función de probabilidad:
+    \[
+    P(X = x) = 
+    \begin{cases} 
+    c \cdot x, & \text{si } x \in \{1, 2, 3, 4\} \\
+    0, & \text{en otro caso}
+    \end{cases}
+    \]
+    \begin{enumerate}[label=\alph*)]
+        \item Determine el valor de la constante $c$.
+        \item Calcule el valor esperado $E[X]$ y la varianza $V[X]$.
+        \item Calcule la probabilidad $P(X > 2)$.
+    \end{enumerate}
+
+    \vspace{0.3cm}
+
+    % 2. Binomial (Básica)
+    \item En una fábrica de componentes electrónicos se sabe que el $8\%$ de las piezas resultan defectuosas. Si se selecciona una muestra aleatoria de $15$ piezas con reemplazo:
+    \begin{enumerate}[label=\alph*)]
+        \item ¿Cuál es la probabilidad de que exactamente 2 piezas sean defectuosas?
+        \item ¿Cuál es la probabilidad de que al menos 1 pieza sea defectuosa?
+        \item Obtenga el valor esperado y la desviación estándar del número de piezas defectuosas.
+    \end{enumerate}
+
+    \vspace{0.3cm}
+
+    % 3. Hipergeométrica (Básica)
+    \item Un comité universitario consta de 12 profesores y 8 estudiantes. Se debe elegir una subcomisión de 5 personas elegidas al azar sin reemplazo.
+    \begin{enumerate}[label=\alph*)]
+        \item ¿Cuál es la probabilidad de que la subcomisión quede integrada por exactamente 3 profesores y 2 estudiantes?
+        \item ¿Cuál es la probabilidad de que en la subcomisión haya al menos un estudiante?
+        \item ¿Cuál es el número esperado de estudiantes en dicha subcomisión?
+    \end{enumerate}
+
+    \vspace{0.3cm}
+
+    % 4. Poisson (Básica)
+    \item El número de llamadas telefónicas que recibe una central de emergencias sigue un proceso de Poisson con una tasa promedio de 3 llamadas por minuto.
+    \begin{enumerate}[label=\alph*)]
+        \item Calcule la probabilidad de recibir exactamente 4 llamadas en un minuto determinado.
+        \item Calcule la probabilidad de recibir más de 2 llamadas en un periodo de 2 minutos.
+    \end{enumerate}
+
+    \vspace{0.3cm}
+
+    % 5. Identificación del Modelo (Binomial vs Hipergeométrica)
+    \item En un lote de 50 teléfonos inteligentes hay 10 que presentan fallas cosméticas en la pantalla.
+    \begin{enumerate}[label=\alph*)]
+        \item Si un inspector selecciona 6 teléfonos \textbf{sin reemplazo}, calcule la probabilidad de obtener exactamente 2 con fallas cosméticas.
+        \item Si el inspector selecciona 6 teléfonos \textbf{con reemplazo}, calcule la probabilidad de obtener exactamente 2 con fallas cosméticas.
+        \item Compare ambas probabilidades y explique conceptualmente a qué se debe la diferencia.
+    \end{enumerate}
+
+    \vspace{0.3cm}
+
+    % 6. Poisson (Cambio de unidad / intervalo)
+    \item El número de imperfecciones por metro cuadrado en la tela de un fabricante sigue una distribución de Poisson con media de $0.5$ imperfecciones por $\text{m}^2$.
+    \begin{enumerate}[label=\alph*)]
+        \item Determine la probabilidad de que en una pieza de tela de $4\text{ m}^2$ no haya ninguna imperfección.
+        \item Calcule la probabilidad de encontrar entre 1 y 3 imperfecciones (ambas inclusive) en una pieza de $6\text{ m}^2$.
+    \end{enumerate}
+
+    \vspace{0.3cm}
+
+    % 7. V.A.D. / Esperada / Aplicación económica
+    \item Un inversor evalúa un proyecto financiero donde la ganancia neta diaria $Y$ (en miles de dólares) tiene la siguiente distribución de probabilidad:
+    \begin{center}
+    \begin{tabular}{cccccc}
+    \toprule
+    $y$ & $-10$ & $0$ & $10$ & $20$ & $50$ \\
+    \midrule
+    $P(Y = y)$ & $0.15$ & $0.30$ & $0.35$ & $0.10$ & $0.10$ \\
+    \bottomrule
+    \end{tabular}
+    \end{center}
+    \begin{enumerate}[label=\alph*)]
+        \item Calcule la ganancia esperada del inversor.
+        \item Calcule el riesgo asociado a la inversión medido a través de la desviación estándar $\sigma_Y$.
+    \end{enumerate}
+
+    \vspace{0.3cm}
+
+    % 8. Aproximación de Binomial a Poisson
+    \item Una editorial sabe que la probabilidad de que un libro impreso tenga un error tipográfico grave en una página es de $0.002$. Si un libro extenso tiene $800$ páginas:
+    \begin{enumerate}[label=\alph*)]
+        \item Modele exactamente el problema mediante la distribución Binomial y exprese su cálculo.
+        \item Utilice la aproximación de Poisson para determinar la probabilidad de que el libro tenga a lo sumo 3 páginas con errores tipográficos graves.
+    \end{enumerate}
+
+    \vspace{0.3cm}
+
+    % 9. Combinación de Distribuciones (Binomial + Poisson)
+    \item Un servidor de correo recibe correos spam según un proceso de Poisson a razón de 4 por hora. 
+    \begin{enumerate}[label=\alph*)]
+        \item Calcule la probabilidad de que el servidor reciba exactamente 3 correos spam en un periodo de 1 hora.
+        \item Suponga que el filtro detecta de forma independiente cada correo spam con una probabilidad fija $p = 0.90$. Si en una hora determinada han llegado 5 correos spam, ¿cuál es la probabilidad de que el filtro bloquee exitosamente al menos 4 de ellos?
+    \end{enumerate}
+
+    \vspace{0.3cm}
+
+    % 10. Hipergeométrica (Control de Calidad)
+    \item Un contenedor incluye 100 microprocesadores, de los cuales 15 están defectuosos. El departamento de control de calidad aplica la siguiente regla de recepción: se extraen 8 microprocesadores al azar sin reemplazo; el lote es aceptado si se encuentran 1 o 0 piezas defectuosas, en caso contrario es rechazado.
+    \begin{enumerate}[label=\alph*)]
+        \item Plantee el modelo de probabilidad para el número de piezas defectuosas encontradas en la muestra.
+        \item Determine la probabilidad de que el lote sea aceptado.
+    \end{enumerate}
+
+    \vspace{0.3cm}
+
+    % 11. Binomial (Cálculo de probabilidad condicional)
+    \item Un estudiante responde un examen de opción múltiple que consta de 10 preguntas independientes. Cada pregunta tiene 4 alternativas de las cuales solo una es correcta. Si el estudiante responde completamente al azar:
+    \begin{enumerate}[label=\alph*)]
+        \item ¿Cuál es la probabilidad de que apruebe el examen obteniendo 6 o más respuestas correctas?
+        \item Dado que obtuvo al menos 4 respuestas correctas, ¿cuál es la probabilidad de que haya obtenido exactamente 6 correctas?
+    \end{enumerate}
+
+    \vspace{0.3cm}
+
+    % 12. Problema Integrador de Toma de Decisiones
+    \item Una pequeña empresa de encomiendas posee dos vehículos repartidores. La probabilidad de que un vehículo sufra una avería mecánica en un día cualquiera es de $0.05$, de forma independiente entre ambos vehículos. Adicionalmente, el número de solicitudes de envío urgente por día que llegan a la oficina sigue una distribución de Poisson con media de $1.8$ solicitudes.
+    \begin{enumerate}[label=\alph*)]
+        \item Determine la probabilidad de que en un día seleccionado al azar ambos vehículos funcionen perfectamente.
+        \item Determine la probabilidad de que en un día cualquiera lleguen más solicitudes urgentes que la cantidad promedio esperada.
+        \item Si se define la eficiencia operativa del día como el evento en que **ningún vehículo se avería Y se reciben a lo más 2 solicitudes urgentes**, calcule la probabilidad de que el día sea calificado como operativamente eficiente.
+    \end{enumerate}
+
+\end{enumerate}
+
+\end{document}
