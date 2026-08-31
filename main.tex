@@ -121,7 +121,7 @@
     \end{block}
     
     \vspace{0.2cm}
-    \textbf{Función de Masa de Probabilidad (FMP):}
+    \textbf{Función  de Probabilidad:}
     $$P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}, \quad k = 0, 1, 2, \dots, n$$
 
     \begin{columns}
@@ -254,19 +254,19 @@
 
 \begin{frame}{Distribución Hipergeométrica: Fundamentos Teóricos}
     \begin{block}{Definición}
-        Modela el número de éxitos $X$ en una muestra de tamaño $n$ extraída \textbf{SIN reemplazo} de una población finita de tamaño $N$, que contiene $K$ elementos con la característica deseada (éxitos).
+        Modela el número de éxitos $X$ en una muestra de tamaño $n$ extraída \textbf{SIN reemplazo} de una población finita de tamaño $N$, que contiene $M$ elementos con la característica deseada (éxitos).
     \end{block}
     
     \vspace{0.2cm}
-    \textbf{Función de Masa de Probabilidad (FMP):}
-    $$P(X = k) = \frac{\binom{K}{k} \binom{N-K}{n-k}}{\binom{N}{n}}$$
+    \textbf{Función de Probabilidad:}
+    $$P(X = k) = \frac{\binom{K}{k} \binom{N-M}{n-k}}{\binom{N}{n}}$$
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \textbf{Parámetros:}
             \begin{itemize}
                 \item $N$: tamaño de la población
-                \item $K$: número de éxitos en la población
+                \item $M$: número de éxitos en la población
                 \item $n$: tamaño de la muestra
             \end{itemize}
         \end{column}
@@ -396,7 +396,7 @@
     \end{block}
     
     \vspace{0.2cm}
-    \textbf{Función de Masa de Probabilidad (FMP):}
+    \textbf{Función de Probabilidad:}
     $$P(X = k) = \frac{e^{-\lambda} \lambda^k}{k!}, \quad k = 0, 1, 2, \dots$$
 
     \begin{columns}
@@ -421,7 +421,7 @@
     \begin{exampleblock}{Enunciado: Llegadas a un Banco}
         A una ventanilla de banco llegan en promedio 3 clientes por minuto ($\lambda = 3$). ¿Cuál es la probabilidad de que en un minuto dado lleguen exactamente 2 clientes?
     \end{exampleblock}
-    
+    \pause
     \textbf{Solución:}
     \begin{itemize}
         \item Identificación del parámetro: $\lambda = 3$, $k = 2$.
@@ -437,7 +437,7 @@
     \begin{exampleblock}{Enunciado: Errores tipográficos}
         Un libro impreso tiene en promedio 0.5 errores por página. ¿Cuál es la probabilidad de que una página elegida al azar no tenga ningún error?
     \end{exampleblock}
-    
+     \pause
     \textbf{Solución:}
     \begin{itemize}
         \item Parámetros: $\lambda = 0.5$, $k = 0$.
@@ -451,7 +451,7 @@
     \begin{exampleblock}{Enunciado: Cambio de Intervalo de Tiempo}
         Un call center recibe un promedio de 4 llamadas por hora. ¿Cuál es la probabilidad de recibir exactamente 2 llamadas en un período de 30 minutos?
     \end{exampleblock}
-    
+     \pause
     \textbf{Solución:}
     \begin{itemize}
         \item Ajuste de la tasa al nuevo intervalo:
@@ -466,7 +466,7 @@
     \begin{exampleblock}{Enunciado: Tráfico Web}
         Un sitio web recibe una media de 2 solicitudes por segundo. ¿Cuál es la probabilidad de recibir al menos 1 solicitud en un segundo determinado?
     \end{exampleblock}
-    
+     \pause
     \textbf{Solución:}
     \begin{itemize}
         \item Parámetro: $\lambda = 2$. Queremos $P(X \ge 1) = 1 - P(X = 0)$.
@@ -482,7 +482,7 @@
     \begin{exampleblock}{Enunciado: Defectos por metro cuadrado}
         Una tela industrial presenta en promedio 1.2 imperfecciones por $m^2$. ¿Cuál es la probabilidad de encontrar más de 2 imperfecciones en $1 m^2$?
     \end{exampleblock}
-    
+     \pause
     \textbf{Solución:}
     \begin{itemize}
         \item Parámetro: $\lambda = 1.2$. Queremos $P(X > 2) = 1 - [P(X=0) + P(X=1) + P(X=2)]$.
@@ -498,7 +498,7 @@
     \begin{exampleblock}{Enunciado: Aproximación de Binomial por Poisson}
         Se envían 1000 paquetes. La probabilidad de que un paquete se pierda es 0.003. Mediante aproximación de Poisson, calcula la probabilidad de que se pierdan exactamente 3 paquetes.
     \end{exampleblock}
-    
+     \pause
     \textbf{Solución:}
     \begin{itemize}
         \item Como $n = 1000$ y $p = 0.003$, aproximamos con:
