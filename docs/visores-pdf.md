@@ -13,3 +13,9 @@
 <iframe src="../pdfs/guia1.pdf" width="100%" height="700px"></iframe>
 
 [Descargar Guía 1 en PDF](../pdfs/guia1.pdf){ .md-button .md-button--primary }
+
+# Guía 3 de Ejercicios
+
+<iframe src="../pdfs/guia3.pdf" width="100%" height="700px"></iframe>
+
+[Descargar Guía 1 en PDF](../pdfs/guia3.pdf){ .md-button .md-button--primary }
