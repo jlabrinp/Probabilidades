@@ -1,19 +1,20 @@
-/* Ocultar barra lateral izquierda (Menú de navegación) */
-.md-sidebar--primary {
+/* Ocultar barra de navegación izquierda y tabla derecha */
+.md-sidebar {
   display: none !important;
 }
 
-/* Ocultar barra lateral derecha (Tabla de contenidos) */
-.md-sidebar--secondary {
+/* Ocultar las migas de pan superiores (breadcrumbs) */
+.md-header__title, .md-breadcrumbs {
   display: none !important;
 }
 
-/* Extender el contenido al 100% del ancho disponible */
+/* Ajustar contenido al 100% de la pantalla */
 .md-content {
   max-width: 100% !important;
+  margin: 0 auto !important;
 }
 
-/* Encabezado del curso */
+/* Estilo Tarjeta Principal */
 .course-hero {
   background: #ffffff;
   padding: 1.8rem;
