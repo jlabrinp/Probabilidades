@@ -1,0 +1,30 @@
+/* Ocultar barra de navegación izquierda y tabla derecha */
+.md-sidebar {
+  display: none !important;
+}
+
+/* Ocultar las migas de pan superiores (breadcrumbs) */
+.md-header__title, .md-breadcrumbs {
+  display: none !important;
+}
+
+/* Ajustar contenido al 100% de la pantalla */
+.md-content {
+  max-width: 100% !important;
+  margin: 0 auto !important;
+}
+
+/* Estilo Tarjeta Principal */
+.course-hero {
+  background: #ffffff;
+  padding: 1.8rem;
+  border-radius: 16px;
+  border: 1px solid #e8e5df;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  margin-bottom: 2rem;
+}
+
+[data-md-color-scheme="slate"] .course-hero {
+  background: #1a1c1e;
+  border-color: #2a2d32;
+}
