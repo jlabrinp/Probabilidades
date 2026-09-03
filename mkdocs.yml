@@ -1,31 +1,39 @@
-site_name: Mi Repositorio de Material
-site_description: Apuntes, PDFs compilados y recursos multimedia
+site_name: Probabilidades y Estadística | José Labrín
+site_author: jlabrinp
 
 theme:
   name: material
+  font:
+    text: Plus Jakarta Sans
   palette:
-    - scheme: default
-      primary: indigo
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-7
-        name: Modo oscuro
-    - scheme: slate
-      primary: indigo
+        name: Cambiar a modo oscuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-4
-        name: Modo claro
+        name: Cambiar a modo claro
   features:
-    - navigation.indexes
-    - navigation.expand
-    - search.suggest
+    - navigation.instant
+    - navigation.sections
+
+extra_css:
+  - stylesheets/custom.css
 
 markdown_extensions:
   - attr_list
   - md_in_html
-
-nav:
-  - Inicio: index.md
-  - Documentos PDF: visores-pdf.md
-  - Imágenes: imagenes.md
-  - Videos: videos.md
-  - Guía 1: visores-pdf.md
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
