@@ -9,9 +9,9 @@ hide:
   <p>
     Material de estudio, guías de ejercicios en PDF y presentaciones Beamer del curso.
   </p>
-  <a href="https://jlabrinp.github.io/" class="md-button">← Volver al Portafolio Principal</a>
+  [:octicons-arrow-left-24: Volver al Portafolio Principal](https://jlabrinp.github.io/){ .md-button }
 </div>
-
+</div>
 ---
 
 ## 📄 Guías de Ejercicios y Apuntes
