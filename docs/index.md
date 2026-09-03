@@ -1,46 +1,66 @@
 <div class="course-hero">
   <h1>🎲 Probabilidades y Estadística</h1>
   <p>
-    Espacio académico destinado a la recopilación de presentaciones Beamer, guías prácticas, ejercicios resueltos y material complementario para el curso.
+    Material de estudio, guías de ejercicios en PDF y presentaciones Beamer del curso.
   </p>
   <a href="https://jlabrinp.github.io/" class="md-button">:octicons-arrow-left-24: Volver al Portafolio Principal</a>
 </div>
 
 ---
 
-=== "📄 Guías de Ejercicios (PDF)"
+## 📄 Guías de Ejercicios y Apuntes
 
-    <div class="grid cards" markdown>
+<div class="grid cards" markdown>
 
-    -   :material-file-pdf-box:{ .lg .middle } **Guía 1: Probabilidad Clásica y Condicional**
+-   :material-file-pdf-box:{ .lg .middle } **Guía 1: Probabilidad Clásica y Condicional**
 
-        ---
+    ---
 
-        Teoría de conjuntos, axiomas de Kolmogorov, probabilidad condicional y regla de Bayes.
+    Teoría de conjuntos, axiomas de Kolmogorov, probabilidad condicional y regla de Bayes.
 
-        [:octicons-download-24: Descargar PDF](pdfs/guia1.pdf){ .md-button .md-button--primary }
-        [:octicons-eye-24: Ver Documento](pdfs/guia1.pdf){ .md-button target="_blank" }
+    [:octicons-download-24: Descargar PDF](pdfs/guia1.pdf){ .md-button .md-button--primary }
+    [:octicons-eye-24: Ver en Navegador](pdfs/guia1.pdf){ .md-button target="_blank" }
 
-    -   :material-file-pdf-box:{ .lg .middle } **Guía 2: Variables Aleatorias Discretas**
+-   :material-file-pdf-box:{ .lg .middle } **Guía 2: Variables Aleatorias Discretas**
 
-        ---
+    ---
 
-        Funciones de probabilidad, valor esperado, varianza y distribuciones (Binomial, Poisson, Geométrica).
+    Funciones de probabilidad, valor esperado, varianza y distribuciones discretas.
 
-        [:octicons-download-24: Descargar PDF](pdfs/guia2.pdf){ .md-button .md-button--primary }
+    [:octicons-download-24: Descargar PDF](pdfs/guia2.pdf){ .md-button .md-button--primary }
+    [:octicons-eye-24: Ver en Navegador](pdfs/guia2.pdf){ .md-button target="_blank" }
 
-    </div>
+-   :material-file-pdf-box:{ .lg .middle } **Guía 3: Distribuciones Continuas**
 
-=== "📊 Presentaciones y Diapositivas"
+    ---
 
-    ??? note "📌 Unidad 1: Fundamentos de Probabilidad"
-        * [Diapositivas Clase 01 - Introducción a la Probabilidad](pdfs/clase01.pdf)
-        * [Diapositivas Clase 02 - Teorema de Bayes](pdfs/clase02.pdf)
+    Variables aleatorias continuas, distribución Normal, T-Student y teorema del límite central.
 
-    ??? note "📌 Unidad 2: Distribuciones Continuas"
-        * [Diapositivas Clase 03 - Distribución Normal y T-Student](pdfs/clase03.pdf)
+    [:octicons-download-24: Descargar PDF](pdfs/guia3.pdf){ .md-button .md-button--primary }
+    [:octicons-eye-24: Ver en Navegador](pdfs/guia3.pdf){ .md-button target="_blank" }
 
-=== "🔗 Enlaces de Interés"
+</div>
 
-    * [:octicons-mark-github-16: Repositorio GitHub del Curso](https://github.com/jlabrinp/Probabilidades)
-    * [:octicons-home-24: Portafolio General de Cursos](https://jlabrinp.github.io/)
+---
+
+## 📊 Presentaciones Beamer (Clases)
+
+<div class="grid cards" markdown>
+
+-   :material-presentation-play:{ .lg .middle } **Clase 01: Introducción y Fundamentos**
+
+    ---
+
+    Diapositivas correspondientes a la Unidad 1.
+
+    [:octicons-download-24: Descargar PDF](pdfs/clase01.pdf){ .md-button .md-button--primary }
+
+-   :material-presentation-play:{ .lg .middle } **Clase 02: Teorema de Bayes**
+
+    ---
+
+    Diapositivas y esquemas de probabilidad condicional.
+
+    [:octicons-download-24: Descargar PDF](pdfs/clase02.pdf){ .md-button .md-button--primary }
+
+</div>
