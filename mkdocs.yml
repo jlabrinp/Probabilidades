@@ -1,10 +1,6 @@
 site_name: Probabilidades | José Labrín
 site_author: jlabrinp
 
-# Menú lateral limpio enfocado únicamente en los documentos
-nav:
-  - Material PDF: index.md
-
 theme:
   name: material
   font:
