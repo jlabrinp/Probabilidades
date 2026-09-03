@@ -1,13 +1,19 @@
-/* Ocultar barra lateral derecha (TOC) */
+/* Ocultar barra lateral izquierda (Menú de navegación) */
+.md-sidebar--primary {
+  display: none !important;
+}
+
+/* Ocultar barra lateral derecha (Tabla de contenidos) */
 .md-sidebar--secondary {
   display: none !important;
 }
 
+/* Extender el contenido al 100% del ancho disponible */
 .md-content {
   max-width: 100% !important;
 }
 
-/* Tarjeta de encabezado */
+/* Encabezado del curso */
 .course-hero {
   background: #ffffff;
   padding: 1.8rem;
