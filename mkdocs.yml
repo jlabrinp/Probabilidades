@@ -1,5 +1,9 @@
-site_name: Probabilidades y Estadística | José Labrín
+site_name: Probabilidades | José Labrín
 site_author: jlabrinp
+
+# Menú lateral limpio enfocado únicamente en los documentos
+nav:
+  - Material PDF: index.md
 
 theme:
   name: material
@@ -22,7 +26,6 @@ theme:
         name: Cambiar a modo claro
   features:
     - navigation.instant
-    - navigation.sections
 
 extra_css:
   - stylesheets/custom.css
@@ -30,10 +33,6 @@ extra_css:
 markdown_extensions:
   - attr_list
   - md_in_html
-  - pymdownx.superfences
-  - pymdownx.details
-  - pymdownx.tabbed:
-      alternate_style: true
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
